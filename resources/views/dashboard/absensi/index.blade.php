@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.app')
+﻿@extends('dashboard.layouts.app')
 
 @section('title', 'Absensi')
 @section('subtitle', 'Catat kehadiran pegawai magang')
@@ -111,7 +111,7 @@
 
 @push('scripts')
     <script>
-        $(function () {
+        window.addEventListener('DOMContentLoaded', function () {
             $('#data_magang_id').select2({
                 width: '100%',
                 placeholder: 'Cari Pegawai',
