@@ -6,7 +6,7 @@
 @section('content')
     <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
         <h3 class="font-semibold text-gray-800 mb-4">Tambah Data Magang</h3>
-        <form method="POST" action="{{ route('data-magang.store') }}" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+        <form method="POST" action="{{ route('data-magang.store') }}" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             @csrf
             <div>
                 <label for="nama" class="block text-sm font-medium text-gray-600 mb-1">Nama</label>
@@ -27,6 +27,11 @@
                 <label for="tempat_magang" class="block text-sm font-medium text-gray-600 mb-1">Tempat Magang</label>
                 <input type="text" id="tempat_magang" name="tempat_magang" required
                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="Instansi / perusahaan">
+            </div>
+            <div>
+                <label for="pembimbing_lapangan" class="block text-sm font-medium text-gray-600 mb-1">Pembimbing Lapangan</label>
+                <input type="text" id="pembimbing_lapangan" name="pembimbing_lapangan" required
+                       class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="Nama pembimbing lapangan">
             </div>
             <div class="flex items-end">
                 <button type="submit"
