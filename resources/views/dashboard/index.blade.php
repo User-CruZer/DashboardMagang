@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 
 @section('title', 'Dashboard')
 @section('subtitle', 'Ringkasan absensi magang hari ini')
@@ -87,7 +87,7 @@
                         <tr class="border-b border-gray-50 hover:bg-gray-50">
                             <td class="px-6 py-3 font-medium text-gray-800">{{ $a->dataMagang->nama }}</td>
                             <td class="px-6 py-3 text-gray-600">{{ \Illuminate\Support\Carbon::parse($a->tanggal)->translatedFormat('d F Y') }}</td>
-                            <td class="px-6 py-3">@include('partials.status-badge', ['status' => $a->status])</td>
+                            <td class="px-6 py-3">@include('dashboard.partials.status-badge', ['status' => $a->status])</td>
                             <td class="px-6 py-3 text-gray-600">{{ $a->keterangan ?? '-' }}</td>
                         </tr>
                     @empty

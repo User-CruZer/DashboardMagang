@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 
 @section('title', 'Absensi')
 @section('subtitle', 'Catat kehadiran pegawai magang')
@@ -12,7 +12,7 @@
                 <label for="data_magang_id" class="block text-sm font-medium text-gray-600 mb-1">Pegawai Magang</label>
                 <select id="data_magang_id" name="data_magang_id" required
                         class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white">
-                    <option value="" disabled selected>Pilih pegawai</option>
+                    <option value="" disabled selected>Cari Pegawai</option>
                     @foreach ($dataMagang as $m)
                         <option value="{{ $m->id }}">{{ $m->nama }} ({{ $m->nim }})</option>
                     @endforeach
@@ -54,13 +54,8 @@
         <div class="px-6 py-4 border-b border-gray-100 flex flex-wrap items-center justify-between gap-4">
             <h3 class="font-semibold text-gray-800">Riwayat Absensi</h3>
             <form method="GET" action="{{ route('absensi.index') }}" class="flex items-center gap-2">
-                <select name="tanggal" onchange="this.form.submit()"
-                        class="border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500">
-                    <option value="">Semua tanggal</option>
-                    @foreach ($tanggalList as $t)
-                        <option value="{{ $t }}" @selected($tanggal == $t)>{{ \Illuminate\Support\Carbon::parse($t)->translatedFormat('d F Y') }}</option>
-                    @endforeach
-                </select>
+                <input type="date" name="tanggal" value="{{ $tanggal }}" onchange="this.form.submit()"
+                       class="border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500">
                 @if ($tanggal)
                     <a href="{{ route('absensi.index') }}" class="text-sm text-brand-600 hover:underline">Reset</a>
                 @endif
@@ -86,7 +81,7 @@
                         <td class="px-6 py-3 font-medium text-gray-800">{{ $a->dataMagang->nama }}</td>
                         <td class="px-6 py-3 text-gray-600">{{ $a->dataMagang->nim }}</td>
                         <td class="px-6 py-3 text-gray-600">{{ \Illuminate\Support\Carbon::parse($a->tanggal)->translatedFormat('d F Y') }}</td>
-                        <td class="px-6 py-3">@include('partials.status-badge', ['status' => $a->status])</td>
+                        <td class="px-6 py-3">@include('dashboard.partials.status-badge', ['status' => $a->status])</td>
                         <td class="px-6 py-3 text-gray-600">{{ $a->keterangan ?? '-' }}</td>
                         <td class="px-6 py-3 text-right">
                             <form method="POST" action="{{ route('absensi.destroy', $a) }}"
@@ -113,3 +108,15 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(function () {
+            $('#data_magang_id').select2({
+                width: '100%',
+                placeholder: 'Cari Pegawai',
+                allowClear: false,
+            });
+        });
+    </script>
+@endpush

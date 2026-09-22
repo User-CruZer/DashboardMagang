@@ -19,9 +19,8 @@ class AbsensiController extends Controller
             ->get();
 
         $dataMagang = DataMagang::orderBy('nama')->get();
-        $tanggalList = Absensi::select('tanggal')->distinct()->orderByDesc('tanggal')->pluck('tanggal');
 
-        return view('absensi.index', compact('absensi', 'dataMagang', 'tanggal', 'tanggalList'));
+        return view('dashboard.absensi.index', compact('absensi', 'dataMagang', 'tanggal'));
     }
 
     public function store(Request $request)

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 
 @section('title', 'Laporan')
 @section('subtitle', 'Rekap absensi magang')
@@ -97,7 +97,7 @@
                         <td class="px-6 py-3 text-gray-600">{{ $a->dataMagang->nim }}</td>
                         <td class="px-6 py-3 text-gray-600">{{ $a->dataMagang->tempat_magang }}</td>
                         <td class="px-6 py-3 text-gray-600">{{ \Illuminate\Support\Carbon::parse($a->tanggal)->translatedFormat('d F Y') }}</td>
-                        <td class="px-6 py-3">@include('partials.status-badge', ['status' => $a->status])</td>
+                        <td class="px-6 py-3">@include('dashboard.partials.status-badge', ['status' => $a->status])</td>
                         <td class="px-6 py-3 text-gray-600">{{ $a->keterangan ?? '-' }}</td>
                     </tr>
                 @empty

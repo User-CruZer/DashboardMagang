@@ -11,7 +11,7 @@ class DataMagangController extends Controller
     {
         $dataMagang = DataMagang::withCount('absensi')->orderBy('nama')->get();
 
-        return view('data-magang.index', compact('dataMagang'));
+        return view('dashboard.data-magang.index', compact('dataMagang'));
     }
 
     public function store(Request $request)
