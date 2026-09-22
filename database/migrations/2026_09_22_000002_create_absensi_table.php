@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('absensi', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('data_magang_id')->constrained('data_magang')->cascadeOnDelete();
+            $table->date('tanggal');
+            $table->enum('status', ['hadir', 'izin', 'sakit', 'tanpa_keterangan']);
+            $table->string('keterangan')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('absensi');
+    }
+};
